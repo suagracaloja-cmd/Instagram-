@@ -27,6 +27,7 @@ GitHub Actions (cron diário, 06:17 em Brasília)
 4. **Cadastrar os segredos.** `Settings → Secrets and variables → Actions → New repository secret`:
    - `APIFY_TOKEN` (**obrigatório**): em [console.apify.com](https://console.apify.com) → *Settings → API & Integrations → API tokens*.
    - `ANTHROPIC_API_KEY` (opcional): em [console.anthropic.com](https://console.anthropic.com). Sem ela os posts continuam sendo sinalizados, mas a análise do gancho fica em branco com o aviso "ANTHROPIC_API_KEY não configurada".
+   - Opcional, em *Variables* (não *Secrets*): `ANALYSIS_MODEL` (padrão `claude-opus-5-5`; troque por `claude-haiku-5-5` para gastar menos) e `WHISPER_MODEL` (padrão `small`).
 5. **Rodar a primeira coleta.** `Actions → Coleta diária e publicação → Run workflow`. Em poucos minutos o site fica no ar em `https://<seu-usuario>.github.io/<nome-do-repositório>/`.
 6. **(Para adicionar/remover perfis pelo site)** abra *Gerenciar perfis* e siga o passo a passo para colar um token do GitHub restrito a este repositório (permissões *Contents* e *Actions*: read and write). O token fica só no seu aparelho.
 

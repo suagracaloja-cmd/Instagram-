@@ -18,7 +18,7 @@ def main() -> int:
     path = sys.argv[1]
     from faster_whisper import WhisperModel  # import tardio: o coletor instala sob demanda
 
-    model_name = os.environ.get("WHISPER_MODEL", "small")
+    model_name = os.environ.get("WHISPER_MODEL") or "small"  # variável vazia = padrão
     model = WhisperModel(model_name, device="cpu", compute_type="int8")
     segments, info = model.transcribe(path, vad_filter=True, beam_size=5)
     text = " ".join(segment.text.strip() for segment in segments).strip()

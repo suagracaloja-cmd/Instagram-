@@ -58,6 +58,9 @@ jobs:
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Opcionais (Settings > Secrets and variables > Actions > Variables). Vazio = padrão.
+          ANALYSIS_MODEL: ${{ vars.ANALYSIS_MODEL }}
+          WHISPER_MODEL: ${{ vars.WHISPER_MODEL }}
         run: node collector/collect.mjs
 
       - name: Salvar dados no repositório
