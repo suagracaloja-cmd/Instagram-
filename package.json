@@ -1,0 +1,21 @@
+{
+  "name": "scalable-ig-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monitor diário de concorrentes no Instagram para a SCALABLE (GitHub Actions + GitHub Pages, sem servidor e sem banco).",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "collect": "node collector/collect.mjs",
+    "test": "node --test \"collector/test/*.test.mjs\"",
+    "sync-data": "node scripts/sync-data.mjs",
+    "web:install": "npm --prefix web ci",
+    "web:dev": "node scripts/sync-data.mjs && npm --prefix web run dev",
+    "web:build": "node scripts/sync-data.mjs && npm --prefix web run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0"
+  }
+}

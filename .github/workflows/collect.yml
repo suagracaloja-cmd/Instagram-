@@ -1,0 +1,121 @@
+name: Coleta diária e publicação
+
+# Roda todo dia às 09:17 UTC (06:17 em Brasília), sob demanda (botão "Coletar agora" do site
+# ou aba Actions > Run workflow) e quando o código do site muda.
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'shared/**'
+      - '.github/workflows/collect.yml'
+
+permissions:
+  contents: write # grava os JSON de data/ no repositório
+  pages: write
+  id-token: write
+
+concurrency:
+  group: coleta-e-publicacao
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    # Em push só republica o site; a coleta (que gasta créditos da Apify) roda em agenda/manual.
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: npm ci
+
+      # Whisper (transcrição local) só é instalado/baixado se um vídeo sinalizado precisar; o cache evita baixar de novo.
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/huggingface
+          key: whisper-small-v1
+
+      - name: Coletar perfis (Apify)
+        id: collect
+        continue-on-error: true # a falha é gravada em data/meta.json; o job fica vermelho no último passo
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node collector/collect.mjs
+
+      - name: Salvar dados no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "Sem mudanças em data/."
+          else
+            git commit -m "chore(data): coleta de $(TZ=America/Sao_Paulo date +%F)"
+            for attempt in 1 2 3 4; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "Tentativa $attempt falhou; aguardando para tentar de novo..."
+              sleep $((attempt * 5))
+            done
+          fi
+
+      - name: Marcar o job como falho se a coleta falhou
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo "A coleta falhou. Veja o log do passo 'Coletar perfis (Apify)' e o aviso no painel."
+          exit 1
+
+  deploy:
+    needs: collect
+    # Publica o site mesmo se a coleta falhou (assim o painel mostra o aviso de falha).
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main # pega o commit de dados mais recente, feito pelo job anterior
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm --prefix web ci
+
+      - name: Copiar data/ para o site e compilar
+        env:
+          VITE_GITHUB_REPO: ${{ github.repository }}
+        run: |
+          node scripts/sync-data.mjs
+          npm --prefix web run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,162 @@
+[
+  {
+    "_fonte": "Captura REAL da Apify (apify/instagram-profile-scraper) em 2026-11-14, reduzida aos campos que o coletor usa. Legendas truncadas; videoUrl trocado por placeholder .invalid.",
+    "inputUrl": "https://www.instagram.com/salute.ia",
+    "username": "salute.ia",
+    "url": "https://www.instagram.com/salute.ia",
+    "fullName": "Salute IA | Plataforma de gestão e atendimento para clínicas",
+    "biography": "Gestão completa sem ser complexa.\nAgenda, prontuário, CRM, financeiro e estoque.\nRenata IA atende cada paciente no WhatsApp 24h.\n↓ Veja como funciona",
+    "followersCount": 1148,
+    "followsCount": 298,
+    "postsCount": 24,
+    "private": false,
+    "verified": false,
+    "isBusinessAccount": true,
+    "latestPosts": [
+      {
+        "shortCode": "DfqWLXxxbNV",
+        "type": "Video",
+        "url": "https://www.instagram.com/p/DfqWLXxxbNV/",
+        "caption": "Com a Salute, tudo isso fica em um só lugar, de forma digital e prática. 💙",
+        "likesCount": 11,
+        "commentsCount": 5,
+        "timestamp": "2026-11-13T00:30:42.000Z",
+        "isPinned": false,
+        "videoDuration": 37.733334,
+        "videoUrl": "https://video.example.invalid/reel.mp4"
+      },
+      {
+        "shortCode": "DflUY0NjgeX",
+        "type": "Image",
+        "url": "https://www.instagram.com/p/DflUY0NjgeX/",
+        "caption": "A Salute agora está ainda mais perto de você. 📱\n\nSua clínica na palma da sua mão, de onde você estiver.\n\nCom o novo apli",
+        "likesCount": 5,
+        "commentsCount": 0,
+        "timestamp": "2026-11-11T01:37:58.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "Dfj-vValuCT",
+        "type": "Image",
+        "url": "https://www.instagram.com/p/Dfj-vValuCT/",
+        "caption": "Pessoas bem sucedidas investem em estética porque entendem que a forma como se apresentam comunica quem são.\n\nCom uma cl",
+        "likesCount": 5,
+        "commentsCount": 0,
+        "timestamp": "2026-11-10T13:09:33.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "DfXlGCfFrra",
+        "type": "Sidecar",
+        "url": "https://www.instagram.com/p/DfXlGCfFrra/",
+        "caption": "O paciente não compra apenas o produto ou a agulha; ele compra a segurança e a clareza de que você sabe exatamente o que",
+        "likesCount": 3,
+        "commentsCount": 0,
+        "timestamp": "2026-11-05T17:34:35.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "DfU58YvRiKL",
+        "type": "Video",
+        "url": "https://www.instagram.com/p/DfU58YvRiKL/",
+        "caption": "Doutor, doutora, e se a sua clínica funcionasse com a excelência que o seu nível de atendimento exige?Esqueça softwares ",
+        "likesCount": 24,
+        "commentsCount": 8,
+        "timestamp": "2026-11-04T16:40:26.000Z",
+        "isPinned": false,
+        "videoDuration": 75.599998,
+        "videoUrl": "https://video.example.invalid/reel.mp4"
+      },
+      {
+        "shortCode": "DfFJLHExShQ",
+        "type": "Video",
+        "url": "https://www.instagram.com/p/DfFJLHExShQ/",
+        "caption": "Quantos pacientes chamaram sua clínica esse mês e não receberam resposta?\nVocê já pagou por cada um deles. A Renata IA c",
+        "likesCount": 9,
+        "commentsCount": 0,
+        "timestamp": "2026-10-29T13:46:02.000Z",
+        "isPinned": false,
+        "videoDuration": 38.25,
+        "videoUrl": "https://video.example.invalid/reel.mp4"
+      },
+      {
+        "shortCode": "DfD5csOxWhq",
+        "type": "Image",
+        "url": "https://www.instagram.com/p/DfD5csOxWhq/",
+        "caption": "Quem tem uma clínica de alto padrão sabe que excelência não pode parar no atendimento ao paciente. Foi pensando nisso qu",
+        "likesCount": 7,
+        "commentsCount": 0,
+        "timestamp": "2026-10-29T02:07:46.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "De_3RRFFh5r",
+        "type": "Sidecar",
+        "url": "https://www.instagram.com/p/De_3RRFFh5r/",
+        "caption": "O cenário político muda, mas a gestão da sua clínica precisa continuar evoluindo. \n\nEntenda o que pode mudar em impostos",
+        "likesCount": 7,
+        "commentsCount": 0,
+        "timestamp": "2026-10-27T12:31:38.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "De489m7ljeM",
+        "type": "Sidecar",
+        "url": "https://www.instagram.com/p/De489m7ljeM/",
+        "caption": "Na sua clínica, cada detalhe importa. Inclusive o termo assinado.\n\nCom o SaluDocs, cada consentimento é assinado digital",
+        "likesCount": 4,
+        "commentsCount": 0,
+        "timestamp": "2026-10-24T20:06:41.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "Dez3gYXljqK",
+        "type": "Sidecar",
+        "url": "https://www.instagram.com/p/Dez3gYXljqK/",
+        "caption": "Ontem nosso fundador teve a oportunidade de adquirir ensinamentos com Thiago Nigro. 🙏🏻",
+        "likesCount": -1,
+        "commentsCount": 4,
+        "timestamp": "2026-10-22T20:42:48.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "DeuorTDRk69",
+        "type": "Image",
+        "url": "https://www.instagram.com/p/DeuorTDRk69/",
+        "caption": "A Renata não nasceu para substituir a sua equipe. Ela nasceu para potencializar o que as pessoas já fazem de melhor, que",
+        "likesCount": 5,
+        "commentsCount": 0,
+        "timestamp": "2026-10-20T19:57:21.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      },
+      {
+        "shortCode": "DesQgm7Rq9r",
+        "type": "Image",
+        "url": "https://www.instagram.com/p/DesQgm7Rq9r/",
+        "caption": "Por trás de cada modulo da plataforma e da IA, existe uma estrutura que leva a sério o que importa: a segurança da sua c",
+        "likesCount": 7,
+        "commentsCount": 0,
+        "timestamp": "2026-10-19T21:49:25.000Z",
+        "isPinned": false,
+        "videoDuration": null,
+        "videoUrl": null
+      }
+    ]
+  }
+]
