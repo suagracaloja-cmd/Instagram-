@@ -1,20 +1,35 @@
 {
   "lastRun": {
-    "startedAt": "2026-11-18T14:52:34.773Z",
-    "finishedAt": "2026-11-18T14:52:34.908Z",
+    "startedAt": "2026-11-18T18:10:50.165Z",
+    "finishedAt": "2026-11-18T18:10:50.336Z",
     "date": "2026-11-18",
     "status": "failed",
     "profiles": [
       {
         "handle": "salute.ia",
         "status": "error",
-        "error": "Não consegui iniciar o ator na Apify: HTTP 401 — {\n  \"error\": {\n    \"type\": \"user-or-token-not-found\",\n    \"message\": \"User was not found or authentication token is not valid\"\n  }\n}",
+        "error": "A Apify recusou o token (HTTP 401): o valor salvo em APIFY_TOKEN não é um token válido. Copie de novo o \"Personal API token\" em console.apify.com/settings/integrations (sem aspas nem espaços) e atualize o secret APIFY_TOKEN no GitHub.",
         "posts": 0,
         "newFlags": 0
       }
     ]
   },
   "runs": [
+    {
+      "startedAt": "2026-11-18T18:10:50.165Z",
+      "finishedAt": "2026-11-18T18:10:50.336Z",
+      "date": "2026-11-18",
+      "status": "failed",
+      "profiles": [
+        {
+          "handle": "salute.ia",
+          "status": "error",
+          "error": "A Apify recusou o token (HTTP 401): o valor salvo em APIFY_TOKEN não é um token válido. Copie de novo o \"Personal API token\" em console.apify.com/settings/integrations (sem aspas nem espaços) e atualize o secret APIFY_TOKEN no GitHub.",
+          "posts": 0,
+          "newFlags": 0
+        }
+      ]
+    },
     {
       "startedAt": "2026-11-18T14:52:34.773Z",
       "finishedAt": "2026-11-18T14:52:34.908Z",
