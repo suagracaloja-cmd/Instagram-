@@ -24,7 +24,23 @@ async function apifyFetch(url, init, { fetchImpl, sleep, retries = 3 }) {
   throw lastError;
 }
 
+/** Tolera o que costuma vir junto ao colar o token: espaços, quebra de linha, aspas, "Bearer ". */
+export function cleanToken(raw) {
+  return String(raw ?? '')
+    .trim()
+    .replace(/^["'`]+|["'`]+$/g, '')
+    .replace(/^Bearer\s+/i, '')
+    .trim();
+}
+
 async function readJson(res, what) {
+  if (res.status === 401 || res.status === 403) {
+    throw new ApifyError(
+      `A Apify recusou o token (HTTP ${res.status}): o valor salvo em APIFY_TOKEN não é um token válido. ` +
+        'Copie de novo o "Personal API token" em console.apify.com/settings/integrations (sem aspas nem espaços) ' +
+        'e atualize o secret APIFY_TOKEN no GitHub.',
+    );
+  }
   if (!res.ok) {
     const body = (await res.text().catch(() => '')).slice(0, 300);
     throw new ApifyError(`${what}: HTTP ${res.status}${body ? ` — ${body}` : ''}`);
@@ -38,7 +54,7 @@ async function readJson(res, what) {
  */
 export async function scrapeProfiles(handles, options = {}) {
   const {
-    token,
+    token: rawToken,
     baseUrl = process.env.APIFY_BASE_URL || 'https://api.apify.com',
     actor = process.env.APIFY_ACTOR || DEFAULT_ACTOR,
     fetchImpl = fetch,
@@ -46,6 +62,7 @@ export async function scrapeProfiles(handles, options = {}) {
     timeoutMs = 10 * 60 * 1000,
     log = () => {},
   } = options;
+  const token = cleanToken(rawToken);
   if (!token) throw new ApifyError('APIFY_TOKEN não está configurado.');
 
   const deps = { fetchImpl, sleep };

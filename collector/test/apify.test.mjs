@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
-import { ApifyError, normalizeItems, normalizePost, scrapeProfiles } from '../lib/apify.mjs';
+import { ApifyError, cleanToken, normalizeItems, normalizePost, scrapeProfiles } from '../lib/apify.mjs';
 import { startMockApify } from './mock-apify.mjs';
 
 const fixture = JSON.parse(await readFile(new URL('./fixtures/apify-salute-ia.json', import.meta.url), 'utf8'));
@@ -89,4 +89,34 @@ test('contagens ausentes viram null (nunca zero) e tipo desconhecido é "unknown
   assert.equal(post.type, 'unknown');
   assert.equal(post.timestamp, null);
   assert.equal(normalizePost({ type: 'Image' }, 'x.y'), null);
+});
+
+test('token recusado (401) vira instrução clara de como corrigir, sem vazar o token', async () => {
+  const mock = await startMockApify(fixture, { token: 'certo' });
+  try {
+    await assert.rejects(
+      scrapeProfiles(['salute.ia'], { token: 'errado-xyz', baseUrl: mock.baseUrl, sleep: noSleep }),
+      (error) => /HTTP 401/.test(error.message) && /APIFY_TOKEN/.test(error.message) && /console\.apify\.com/.test(error.message) && !error.message.includes('errado-xyz'),
+    );
+  } finally {
+    await mock.close();
+  }
+});
+
+test('cleanToken remove espaços, quebra de linha, aspas e "Bearer " colados junto', () => {
+  assert.equal(cleanToken('  apify_api_abc123\n'), 'apify_api_abc123');
+  assert.equal(cleanToken('"apify_api_abc123"'), 'apify_api_abc123');
+  assert.equal(cleanToken("'apify_api_abc123'"), 'apify_api_abc123');
+  assert.equal(cleanToken('Bearer apify_api_abc123'), 'apify_api_abc123');
+  assert.equal(cleanToken(undefined), '');
+});
+
+test('token colado com aspas e quebra de linha ainda autentica', async () => {
+  const mock = await startMockApify(fixture, { token: 'apify_api_abc123' });
+  try {
+    const items = await scrapeProfiles(['salute.ia'], { token: '"apify_api_abc123"\n', baseUrl: mock.baseUrl, sleep: noSleep });
+    assert.equal(items.length, 1);
+  } finally {
+    await mock.close();
+  }
 });
