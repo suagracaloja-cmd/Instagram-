@@ -1,0 +1,8 @@
+{
+  "salute.ia": {
+    "handle": "salute.ia",
+    "status": "error",
+    "error": "Não consegui iniciar o ator na Apify: HTTP 401 — {\n  \"error\": {\n    \"type\": \"user-or-token-not-found\",\n    \"message\": \"User was not found or authentication token is not valid\"\n  }\n}",
+    "lastAttemptAt": "2026-11-18T14:52:34.773Z"
+  }
+}
