@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
@@ -73,7 +73,7 @@ jobs:
           else
             git commit -m "chore(data): coleta de $(TZ=America/Sao_Paulo date +%F)"
             for attempt in 1 2 3 4; do
-              git pull --rebase origin main && git push origin HEAD:main && break
+              git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && break
               echo "Tentativa $attempt falhou; aguardando para tentar de novo..."
               sleep $((attempt * 5))
             done
@@ -97,7 +97,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main # pega o commit de dados mais recente, feito pelo job anterior
+          ref: ${{ github.ref_name }} # pega o commit de dados mais recente, feito pelo job anterior
 
       - uses: actions/setup-node@v4
         with:
@@ -110,6 +110,7 @@ jobs:
       - name: Copiar data/ para o site e compilar
         env:
           VITE_GITHUB_REPO: ${{ github.repository }}
+          VITE_GH_BRANCH: ${{ github.ref_name }}
         run: |
           node scripts/sync-data.mjs
           npm --prefix web run build
