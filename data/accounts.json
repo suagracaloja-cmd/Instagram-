@@ -3,6 +3,6 @@
     "handle": "salute.ia",
     "status": "error",
     "error": "A Apify recusou o token (HTTP 401): o valor salvo em APIFY_TOKEN não é um token válido. Copie de novo o \"Personal API token\" em console.apify.com/settings/integrations (sem aspas nem espaços) e atualize o secret APIFY_TOKEN no GitHub.",
-    "lastAttemptAt": "2026-11-19T18:22:54.746Z"
+    "lastAttemptAt": "2026-11-20T17:52:55.972Z"
   }
 }
