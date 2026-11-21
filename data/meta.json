@@ -1,8 +1,8 @@
 {
   "lastRun": {
-    "startedAt": "2026-11-20T17:52:55.972Z",
-    "finishedAt": "2026-11-20T17:52:56.191Z",
-    "date": "2026-11-20",
+    "startedAt": "2026-11-21T16:50:36.207Z",
+    "finishedAt": "2026-11-21T16:50:36.532Z",
+    "date": "2026-11-21",
     "status": "failed",
     "profiles": [
       {
@@ -15,6 +15,21 @@
     ]
   },
   "runs": [
+    {
+      "startedAt": "2026-11-21T16:50:36.207Z",
+      "finishedAt": "2026-11-21T16:50:36.532Z",
+      "date": "2026-11-21",
+      "status": "failed",
+      "profiles": [
+        {
+          "handle": "salute.ia",
+          "status": "error",
+          "error": "A Apify recusou o token (HTTP 401): o valor salvo em APIFY_TOKEN não é um token válido. Copie de novo o \"Personal API token\" em console.apify.com/settings/integrations (sem aspas nem espaços) e atualize o secret APIFY_TOKEN no GitHub.",
+          "posts": 0,
+          "newFlags": 0
+        }
+      ]
+    },
     {
       "startedAt": "2026-11-20T17:52:55.972Z",
       "finishedAt": "2026-11-20T17:52:56.191Z",
